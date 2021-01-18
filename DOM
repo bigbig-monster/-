@@ -1,0 +1,115 @@
+//dom可以更改页面的元素，对页面的元素进行操作
+
+getElementById 方法使用 id="demo"来查找元素。
+
+获取元素内容最简单的方法是使用 innerHTML 属性。
+innerHTML 属性可用于获取或替换 HTML 元素的内容。
+innerHTML 属性可用于获取或改变任何 HTML 元素，包括 <html> 和 <body>
+
+===================================================================
+
+<p id="intro">Hello World!</p>
+<p id="demo"></p>
+
+<script>
+var myElement = document.getElementById("intro");
+document.getElementById("demo").innerHTML = 
+"来自 intro 段落的文本是：" + myElement.innerHTML;
+</script>
+
+//首先声明一个变量，通过getElementById来查找元素，再使用innerHTML获取元素内容。
+//通过tag或者class来显示元素，也是用这样的方法  
+
+----------------------------
+
+<div id="main">
+<p>DOM 很有用。</p>
+<p>本例演示 <b>getElementsByTagName</b> 方法。</p>
+</div>
+
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("main");
+var y = x.getElementsByTagName("p");
+document.getElementById("demo").innerHTML = 
+'“main”中的第一段（索引 0）是：' + y[0].innerHTML;
+</script>
+
+//通过标签名的方法步骤：先查找定位到要获取的整个块，通过id=main定位，声明变量x
+之后在x这部分通过getElementsByTagName得到想要的标签名，通过索引下标的方式来获取
+
+---------------------------------------------
+//通过类名来查找元素也是相似的方法啦
+
+<p class="intro">DOM 很有用。</p>
+
+<p class="intro">本例演示 <b>getElementsByClassName</b> 方法。</p>
+
+<p id="demo"></p>
+
+<script>
+var x = document.getElementsByClassName("intro");
+document.getElementById("demo").innerHTML = 
+'class ="intro" 的第一段（索引 0）：' + x[0].innerHTML;
+</script>
+
+//先声明一个变量，定位到想要查找的类名
+//在通过索引下标的方式获取元素显示出来即可
+
+
+------------------------------------------------------
+
+但是！ 万一类名在不同的标签里面都有怎么办呢？
+可以使用查询选择器进行查找
+
+<p class="intro">DOM 很有用。</p>
+
+<p class="intro">本例演示 <b>querySelectorAll</b> 方法。</p>
+
+<span>this is a test tag</span>
+
+<p id="demo"></p>
+
+<script>
+var x = document.querySelectorAll("p.intro");
+document.getElementById("demo").innerHTML = 
+'class ="intro" 的第一段（索引 0）：' + x[0].innerHTML;
+</script>
+
+---------------------------------------------------------------------------------
+
+//使用 document.forms 查找 HTML 元素
+
+<form id="frm1" action="/demo/action_page.php">
+  First name: <input type="text" name="fname" value="Bill"><br>
+  Last name: <input type="text" name="lname" value="Gates"><br><br>
+  <input type="submit" value="提交">
+</form> 
+//首先是一个form表格，id为frm1
+
+<p>单击“试一试”按钮，显示表单中每个元素的值。</p>
+<button onclick="myFunction()">试一试</button>
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var x = document.forms["frm1"];
+  var text = "";
+  var i;
+  for (i = 0; i < x.length ;i++) {
+    text += x.elements[i].value;
+  }
+  document.getElementById("demo").innerHTML = text;
+}
+</script>
+
+
+
+
+
+
+
+
+
+
