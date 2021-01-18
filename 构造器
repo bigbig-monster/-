@@ -1,0 +1,85 @@
+//使用构造器可以构造出来一种“对象类型”，相似的对象都可以使用这个构造器
+//之后就很方便的可以利用该构造器来创建新的对象
+
+<script>
+// Person 对象的构造器函数
+function Person(first, last, age, eye) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eye;
+} 
+
+// 创建两个 Person 对象
+var myFriend = new Person("Bill", "Gates", 62, "blue");
+var myBrother = new Person("Steve", "Jobs", 56, "green");
+
+// 为第一个对象添加国籍-----若某个对象有额外的属性，则可以单独增加，不影响整体  但是！不可以给构造器这样添加属性，只有重新在构造器块内添加
+myFriend.nationality = "English";
+
+// 显示国籍
+document.getElementById("demo").innerHTML =
+"My friend is " + myFriend.nationality; 
+
+
+======================================================
+//可以给对象添加方法，并且可以使用该方法
+
+myFriend.name = function() {
+  return this.firstName + " " + this.lastName;
+};
+document.getElementById("demo").innerHTML =
+"My friend is " + myFriend.name(); 
+========================================================
+
+
+
+
+
+===========================================================
+//也可以给构造器添加方法
+function Person(first, last, age, eye) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eye;
+  this.name = function() {
+    return this.firstName + " " + this.lastName
+  };
+}
+var myFriend = new Person("Bill", "Gates", 62, "blue");
+
+document.getElementById("demo").innerHTML =
+"My friend is " + myFriend.name(); 
+
+//构造器里面有方法的话，创建新的对象时可以直接使用
+============================================================
+
+
+
+//但是可以直接使用prototype在构造器内添加对象属性等，也可以添加函数
+
+function Person(first, last, age, eye) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eye;
+}
+Person.prototype.nationality = "English";
+
+-------------------------------------------------------------
+function Person(first, last, age, eye) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eye;
+}
+Person.prototype.name = function() {
+  return this.firstName + " " + this.lastName
+};
+
+
+
+
+</script>
+  
